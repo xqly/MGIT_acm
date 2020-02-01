@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f443eca5-2d7a-43c9-9c81-8d836215c8b8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/96cf328f-90d0-4661-b52b-bf9726b1ec1e.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/96cf328f-90d0-4661-b52b-bf9726b1ec1e.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/app/schema.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/rating.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/rating.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/instance/flaskr.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/instance/flaskr.sqlite" afterDir="false" />
-    </list>
+    <list default="true" id="f443eca5-2d7a-43c9-9c81-8d836215c8b8" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +56,7 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="html" value="1" />
-          <entry key="py" value="2" />
+          <entry key="py" value="3" />
           <entry key="sql" value="3" />
           <entry key="user" value="6" />
         </counts>
@@ -71,7 +65,7 @@
         <counts>
           <entry key="Database Element" value="6" />
           <entry key="HTML" value="1" />
-          <entry key="Python" value="2" />
+          <entry key="Python" value="3" />
           <entry key="SQL" value="3" />
         </counts>
       </usages-collector>
@@ -118,13 +112,18 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/templates/rating.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="371">
-              <caret line="31" column="9" selection-start-line="31" selection-start-column="9" selection-end-line="31" selection-end-column="9" />
+            <state relative-caret-position="319">
+              <caret line="24" column="13" lean-forward="true" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/setup.py">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -141,8 +140,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -163,6 +162,7 @@
         <option value="$PROJECT_DIR$/app/schema.sql" />
         <option value="$PROJECT_DIR$/app/__init__.py" />
         <option value="$PROJECT_DIR$/app/templates/rating.html" />
+        <option value="$PROJECT_DIR$/setup.py" />
       </list>
     </option>
   </component>
@@ -191,17 +191,6 @@
             <path>
               <item name="MGIT_acm" type="b2602c69:ProjectViewProjectNode" />
               <item name="MGIT_acm" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MGIT_acm" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MGIT_acm" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MGIT_acm" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MGIT_acm" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="MGIT_acm" type="b2602c69:ProjectViewProjectNode" />
@@ -321,10 +310,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/rating.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="371">
-          <caret line="31" column="9" selection-start-line="31" selection-start-column="9" selection-end-line="31" selection-end-column="9" />
+        <state relative-caret-position="319">
+          <caret line="24" column="13" lean-forward="true" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup.py">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>
