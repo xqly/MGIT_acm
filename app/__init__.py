@@ -1,4 +1,6 @@
 import os
+import requests
+import json
 from flask import Flask,render_template
 from app.db import *
 from flask_apscheduler import APScheduler
@@ -6,8 +8,25 @@ from flask_apscheduler import APScheduler
 def update_data():
     print(123)
     db =outline_get_db()
-
-
+    user = db.execute(
+        'select * from user'
+    ).fetchall()
+    allname =""
+    for i in user:
+        allname+=i['cf_nickname']+";"
+    url = "https://codeforces.com/api/user.info?handles="+allname
+    print(url)
+    r = requests.get(url)
+    r = r.json()
+    print(r)
+    if(r['status'] == "OK"):
+        r = r['result']
+        for i in r :
+            if 'rating' in i:
+                db.execute(
+                    'update user set cf_rating = ? where cf_nickname = ?',(i['rating'],i['handle'])
+                )
+    db.commit()
 
 
 def method_test(a,b):
@@ -30,7 +49,7 @@ class Config(object):  # 创建配置，用类
             'func': 'app.__init__:update_data', # 方法名
             'args': (), # 入参
             'trigger': 'interval', # interval表示循环任务
-            'seconds': 5,
+            'seconds': 300,
         }
     ]
 
@@ -65,12 +84,16 @@ def create_app(test_config=None):
     @app.route('/')
     def good():
         db = get_db()
-        db.execute(
-            'select * from user'
+        all = db.execute(
+            'select * from user order by cf_rating desc'
         ).fetchall()
-
-        return render_template('rating.html')
-
+        data = []
+        for i in all :
+            temp = []
+            temp.append(i['cf_nickname'])
+            temp.append(i['cf_rating'])
+            data.append(temp)
+        return render_template('rating.html' ,data=data)
     from . import db
     db.init_app(app)
     app.config.from_object(Config())

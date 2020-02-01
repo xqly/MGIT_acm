@@ -2,9 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>MGIT_rating</title>
 </head>
 <body>
+<table>
+    <thead>
+    <tr>
+        <th>
+            nickname
+        </th>
+        <th>
+            rating
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for i in data %}
+    <tr>
+        {% for j in i %}
+        <td>
+            {{j}}
+        </td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
 
+<a href=""></a>
 </body>
 </html>
