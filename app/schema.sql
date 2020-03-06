@@ -45,7 +45,7 @@ insert into user(cf_nickname) values("little8");
 insert into user(cf_nickname) values("halfeee");
 insert into user(cf_nickname) values("g9002");
 insert into user(cf_nickname) values("cccccy");
-insert into user(cf_nickname) values("little8");
+insert into user(cf_nickname) values("Irimsky");
 
 
 
