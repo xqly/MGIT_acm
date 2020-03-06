@@ -15,10 +15,11 @@ def update_data():
     for i in user:
         allname+=i['cf_nickname']+";"
     url = "https://codeforces.com/api/user.info?handles="+allname
-    print(url)
+    # print(url)
     r = requests.get(url)
     r = r.json()
-    print(r)
+    # print(r)
+    data=[]
     if(r['status'] == "OK"):
         r = r['result']
         for i in r :
@@ -27,7 +28,19 @@ def update_data():
                     'update user set cf_rating = ? where cf_nickname = ?',(i['rating'],i['handle'])
                 )
     db.commit()
-
+    answ = db.execute(
+        'select * from user order by cf_rating desc'
+    ).fetchall()
+    for i in answ:
+        elem = {"name": i['cf_nickname'],
+                "value": i['cf_rating'],
+                "date": 2020}
+        data.append(elem)
+    # print(os.getcwd())
+    file = open("app/static/data1.js", "w", encoding="utf-8")
+    # print(data)
+    file.write("var TotalData="+json.dumps(data))
+    file.close()
 
 def method_test(a,b):
     print(a+b)
@@ -49,7 +62,7 @@ class Config(object):  # 创建配置，用类
             'func': 'app.__init__:update_data', # 方法名
             'args': (), # 入参
             'trigger': 'interval', # interval表示循环任务
-            'seconds': 300,
+            'seconds': 3,
         }
     ]
 
@@ -79,7 +92,7 @@ def create_app(test_config=None):
     # a simple page that says hello
     @app.route('/hello')
     def hello():
-        return 'Hello, World!'
+        return render_template('animation.html')
 
     @app.route('/')
     def good():
