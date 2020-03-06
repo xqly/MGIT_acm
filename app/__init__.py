@@ -4,6 +4,7 @@ import json
 from flask import Flask,render_template
 from app.db import *
 from flask_apscheduler import APScheduler
+from datetime import timedelta
 
 def update_data():
     print(123)
@@ -28,19 +29,6 @@ def update_data():
                     'update user set cf_rating = ? where cf_nickname = ?',(i['rating'],i['handle'])
                 )
     db.commit()
-    answ = db.execute(
-        'select * from user order by cf_rating desc'
-    ).fetchall()
-    for i in answ:
-        elem = {"name": i['cf_nickname'],
-                "value": i['cf_rating'],
-                "date": 2020}
-        data.append(elem)
-    # print(os.getcwd())
-    file = open("app/static/data1.js", "w", encoding="utf-8")
-    # print(data)
-    file.write("var TotalData="+json.dumps(data))
-    file.close()
 
 def method_test(a,b):
     print(a+b)
@@ -62,7 +50,7 @@ class Config(object):  # 创建配置，用类
             'func': 'app.__init__:update_data', # 方法名
             'args': (), # 入参
             'trigger': 'interval', # interval表示循环任务
-            'seconds': 3,
+            'seconds': 30,
         }
     ]
 
@@ -88,11 +76,25 @@ def create_app(test_config=None):
         os.makedirs(app.instance_path)
     except OSError:
         pass
-
+    app.config['SEND_FILE_MAX_AGE_DEFAULT'] = timedelta(seconds=1)
     # a simple page that says hello
-    @app.route('/hello')
-    def hello():
-        return render_template('animation.html')
+    @app.route('/animation')
+    def animation():
+        db = get_db()
+        data=[]
+        answ = db.execute(
+            'select * from user order by cf_rating desc'
+        ).fetchall()
+        for i in answ:
+            elem = {"name": i['cf_nickname'],
+                    "value": i['cf_rating'],
+                    "date": 2020}
+            data.append(elem)
+        # file = open("app/static/data1.js", "w", encoding="utf-8")
+        # file.write("var TotalData=" + json.dumps(data))
+        # file.close()
+        return render_template('animation.html',data=json.dumps(data))
+
 
     @app.route('/')
     def good():
