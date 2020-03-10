@@ -1,7 +1,7 @@
 import os
 import requests
 import json
-from flask import Flask,render_template
+from flask import Flask,render_template,request
 from app.db import *
 from flask_apscheduler import APScheduler
 from datetime import timedelta
@@ -62,7 +62,7 @@ class Config(object):  # 创建配置，用类
             'func': 'app.__init__:update_data', # 方法名
             'args': (), # 入参
             'trigger': 'interval', # interval表示循环任务
-            'seconds': 3,
+            'seconds': 30,
         }
     ]
 
@@ -108,6 +108,17 @@ def create_app(test_config=None):
             temp.append(i['cf_rating'])
             data.append(temp)
         return render_template('rating.html' ,data=data)
+
+    @app.route('/addcf',methods=['GET','POST'])
+    def addcf():
+        db=get_db()
+        if request.method=='POST':
+            db.execute(
+                'insert into user(cf_nickname)values (?);',([request.form['name']])
+            )
+            db.commit()
+            print(request.form['name'])
+        return render_template('addcf.html')
     from . import db
     db.init_app(app)
     app.config.from_object(Config())
