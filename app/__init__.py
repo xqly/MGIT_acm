@@ -1,4 +1,5 @@
 import os
+import random
 import requests
 import json
 from flask import Flask,render_template,request
@@ -41,6 +42,17 @@ def update_data():
     file = open("app/static/data1.js", "w", encoding="utf-8")
     file.write("var TotalData=" + json.dumps(data))
     file.close()
+
+def generate_random_str(randomlength=16):
+  """
+  生成一个指定长度的随机字符串
+  """
+  random_str = ''
+  base_str = 'ABCDEFGHIGKLMNOPQRSTUVWXYZabcdefghigklmnopqrstuvwxyz0123456789'
+  length = len(base_str) - 1
+  for i in range(randomlength):
+    random_str += base_str[random.randint(0, length)]
+  return random_str
 
 def method_test(a,b):
     print(a+b)
@@ -108,6 +120,10 @@ def create_app(test_config=None):
             temp.append(i['cf_rating'])
             data.append(temp)
         return render_template('rating.html' ,data=data)
+
+    @app.route('/advise',methods=['GET','POST'])
+    def advise():
+        return render_template('code.html')
 
     @app.route('/addcf',methods=['GET','POST'])
     def addcf():
