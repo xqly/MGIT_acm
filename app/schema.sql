@@ -1,5 +1,5 @@
 DROP TABLE IF EXISTS user;
-
+DROP TABLE IF EXISTS advise;
 CREATE TABLE user (
   id TEXT,
   cf_nickname TEXT,
