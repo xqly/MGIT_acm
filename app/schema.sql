@@ -1,5 +1,6 @@
 DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS advise;
+DROP TABLE IF EXISTS code;
 CREATE TABLE user (
   id TEXT,
   cf_nickname TEXT,
@@ -9,6 +10,12 @@ CREATE TABLE user (
 CREATE TABLE advise(
   id TEXT,
   content TEXT
+);
+
+create table code(
+  id TEXT,
+  code_type TEXT,
+  code_TEXT TEXT
 );
 
 insert into user(cf_nickname) values("xqly");

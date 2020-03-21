@@ -8,38 +8,36 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='SyntaxHighlighter/css/shThemeDefault.css') }}">
 </head>
 <body>
-    <pre name="code" class="brush: java">
-        public class Person {
-
-        }
+    <pre name="code" class="brush: cpp">{{code}}
     </pre>
-    <pre name="code" class="brush: js; gutter: false;">
-        function foo() {
-            var i = 3;
-        }
-    </pre>
-    <pre class="brush: java; collapse: true;">
-        public void javaMethod() {
-            int i = 3;
-        }
-    </pre>
-    <script type="syntaxhighlighter" class="brush: js">
-        <![CDATA[
-      /**
-       * SyntaxHighlighter
-       */
-          function foo() {
-              if (counter <= 10)
-                  return;
-              // it works!
-          }
-        ]]>
-    </script>
+    <!--<pre name="code" class="brush: js; gutter: false;">-->
+        <!--function foo() {-->
+            <!--var i = 3;-->
+        <!--}-->
+    <!--</pre>-->
+    <!--<pre class="brush: java; collapse: true;">-->
+        <!--public void javaMethod() {-->
+            <!--int i = 3;-->
+        <!--}-->
+    <!--</pre>-->
+    <!--<script type="syntaxhighlighter" class="brush: js">-->
+        <!--<![CDATA[-->
+      <!--/**-->
+       <!--* SyntaxHighlighter-->
+       <!--*/-->
+          <!--function foo() {-->
+              <!--if (counter <= 10)-->
+                  <!--return;-->
+              <!--// it works!-->
+          <!--}-->
+        <!--]]>-->
+    <!--</script>-->
     <script type="text/javascript" src="{{ url_for('static', filename='SyntaxHighlighter/js/XRegExp.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='SyntaxHighlighter/js/shCore.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='SyntaxHighlighter/js/shBrushJava.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='SyntaxHighlighter/js/shBrushJScript.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='SyntaxHighlighter/js/shBrushSql.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='SyntaxHighlighter/js/shBrushCpp.js') }}"></script>
     <script type="text/javascript">
         SyntaxHighlighter.all()
     </script>

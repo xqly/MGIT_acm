@@ -2,7 +2,7 @@ import os
 import random
 import requests
 import json
-from flask import Flask,render_template,request
+from flask import Flask,render_template,request,url_for,redirect
 from app.db import *
 from flask_apscheduler import APScheduler
 from datetime import timedelta
@@ -74,7 +74,7 @@ class Config(object):  # 创建配置，用类
             'func': 'app.__init__:update_data', # 方法名
             'args': (), # 入参
             'trigger': 'interval', # interval表示循环任务
-            'seconds': 30,
+            'seconds': 3600,
         }
     ]
 
@@ -130,7 +130,7 @@ def create_app(test_config=None):
                 ge = db.execute(
                     'select * from advise where id = ?',(id,)
                 ).fetchall()
-                if(len(ge)==0):
+                if len(ge)==0:
                     break
             db.execute(
                 'insert into advise(id,content) values (?,?)',(id,request.form['content'])
@@ -138,9 +138,35 @@ def create_app(test_config=None):
             db.commit()
         return render_template('advise.html')
 
-    @app.route('/code')
-    def code():
-        return render_template('code.html')
+    @app.route('/code/<id>')
+    def code(id):
+        db = get_db()
+        all = db.execute(
+            'select code_TEXT from code where id = ? ',(id,)
+        ).fetchone()
+        print(type(all))
+        if all == None:
+            return render_template('code.html',code = 'HELLO WORLD')
+        else :
+            return render_template('code.html',code = all[0])
+
+    @app.route('/addcode', methods=['GET', 'POST'])
+    def addcode():
+        if request.method == 'POST':
+            db = get_db()
+            id = generate_random_str()
+            while True:
+                ge = db.execute(
+                    'select * from code where id = ?', (id,)
+                ).fetchall()
+                if len(ge) == 0:
+                    break
+            db.execute(
+                'insert into code(id,code_TEXT) values (?,?)', (id, request.form['code_text'])
+            )
+            db.commit()
+            return redirect(url_for('code',id = id))
+        return render_template('addcode.html')
 
     @app.route('/addcf',methods=['GET','POST'])
     def addcf():
