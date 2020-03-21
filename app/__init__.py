@@ -123,6 +123,23 @@ def create_app(test_config=None):
 
     @app.route('/advise',methods=['GET','POST'])
     def advise():
+        if request.method=='POST':
+            db = get_db()
+            id = generate_random_str()
+            while True :
+                ge = db.execute(
+                    'select * from advise where id = ?',(id,)
+                ).fetchall()
+                if(len(ge)==0):
+                    break
+            db.execute(
+                'insert into advise(id,content) values (?,?)',(id,request.form['content'])
+            )
+            db.commit()
+        return render_template('advise.html')
+
+    @app.route('/code')
+    def code():
         return render_template('code.html')
 
     @app.route('/addcf',methods=['GET','POST'])

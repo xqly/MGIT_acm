@@ -6,6 +6,11 @@ CREATE TABLE user (
   cf_rating  INTEGER
 );
 
+CREATE TABLE advise(
+  id TEXT,
+  content TEXT
+);
+
 insert into user(cf_nickname) values("xqly");
 insert into user(cf_nickname) values("156250lcy");
 insert into user(cf_nickname) values("LightWant");
